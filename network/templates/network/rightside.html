@@ -1,0 +1,31 @@
+<!-- Search bar -->
+<div class="mt-4">
+    <form class="d-flex" method="get" action="{% url 'index' %}">
+        <input class="form-control me-2" type="text" placeholder="Search" name="search_bar">
+    </form>
+</div>
+
+<div class="card text-bg-light my-3" style="max-width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title"><strong>Subscribe to Premium</strong></h5>
+        <p class="card-text">Subscribe to unlock new features and if eligible, receive a share of ads revenue.</p>
+        <a href="#" class="btn btn-dark btn-sm rounded-pill">Subscribe</a>
+    </div>
+</div>
+
+
+<div class="card text-bg-light my-3" style="max-width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title"><strong>Who To Follow</strong></h5>
+        <div>
+            {% for person in who_to_follow %}
+                {% if user != person %}
+                    <div class="d-flex justify-content-between mt-3">
+                        <a href="{% url 'profile' person.id %}">@{{ person.username | lower }}</a>
+                        <a href="{% url 'follow' person.id %}" class="btn btn-dark btn-sm rounded-pill">Follow</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
